@@ -1,0 +1,25 @@
+{
+    "name": "vaultvision/php-auth-example",
+    "description": "Sample application with authentication using OpenID Connect written in PHP.",
+    "license": "MIT",
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "php-http/discovery": true
+        },
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "scripts": {
+        "app": [
+            "Composer\\Config::disableProcessTimeout",
+            "composer install --no-dev",
+            "php -S 127.0.0.1:8090 app.php"
+        ]
+    },
+    "require": {
+        "bramus/router": "^1.6",
+        "jumbojett/openid-connect-php": "^0.9.10",
+        "vlucas/phpdotenv": "^5.5"
+    }
+}
