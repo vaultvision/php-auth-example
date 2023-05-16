@@ -113,9 +113,12 @@ $router->get('/settings', function() {
 
 // /auth/settings redirects to the Vault Vision settings page so users can
 // manage their email, password, social logins, webauthn credentials and more.
-$router->get('/auth/settings', function() use($CONFIG) {
-    $url = $CONFIG['VV_ISSUER_URL'] . '/settings';
-    header('Location: ' . $url);
+$router->get('/auth/settings', function() use($oidcClient) {
+    $oidcClient->addAuthParam(array('prompt' => 'settings'));
+
+    // This will call the private oidcClient->requestAuthorization method
+    // if no query params are set.
+    $oidcClient->authenticate();
 });
 
 // Basic static routes for this example, you wouldn't use these in a
