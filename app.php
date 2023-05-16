@@ -113,6 +113,9 @@ $router->get('/settings', function() {
 
 // /auth/settings redirects to the Vault Vision settings page so users can
 // manage their email, password, social logins, webauthn credentials and more.
+//
+// This works by using an oidc prompt named "settings". When the user returns
+// your session will be updated to reflect any changes they made.
 $router->get('/auth/settings', function() use($oidcClient) {
     $oidcClient->addAuthParam(array('prompt' => 'settings'));
 
